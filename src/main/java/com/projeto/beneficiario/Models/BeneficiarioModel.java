@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "beneficiario")
-public class beneficiarioModel implements Serializable {
+public class BeneficiarioModel implements Serializable {
     private static final long SerialVersion = 1L;
 
     @Id
@@ -19,11 +19,11 @@ public class beneficiarioModel implements Serializable {
     private Date dataNascimento;
     private  Date dataInclusao;
     private Date dataAtualizacao;
-
-    public beneficiarioModel() {
+    
+    public BeneficiarioModel() {
     }
 
-    public beneficiarioModel(UUID beneficiarioId, String nome, String telefone, Date dataNascimento, Date dataInclusao, Date dataAtualizacao) {
+    public BeneficiarioModel(UUID beneficiarioId, String nome, String telefone, Date dataNascimento, Date dataInclusao, Date dataAtualizacao) {
         this.beneficiarioId = beneficiarioId;
         this.nome = nome;
         this.telefone = telefone;

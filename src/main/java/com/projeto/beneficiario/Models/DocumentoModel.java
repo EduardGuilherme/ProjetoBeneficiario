@@ -3,12 +3,13 @@ package com.projeto.beneficiario.Models;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-public class documentoModel implements Serializable {
+public class DocumentoModel implements Serializable {
     private static final long SerialVersionID = 1L;
 
     @Id
@@ -19,10 +20,13 @@ public class documentoModel implements Serializable {
     private Date dataInclusao;
     private Date dataAtualizacao;
 
-    public documentoModel() {
+    @ManyToOne
+    private BeneficiarioModel beneficiarioModel;
+
+    public DocumentoModel() {
     }
 
-    public documentoModel(UUID documentoId, String tipoDocumento, String descricao, Date dataInclusao, Date dataAtualizacao) {
+    public DocumentoModel(UUID documentoId, String tipoDocumento, String descricao, Date dataInclusao, Date dataAtualizacao) {
         this.documentoId = documentoId;
         this.tipoDocumento = tipoDocumento;
         this.descricao = descricao;
