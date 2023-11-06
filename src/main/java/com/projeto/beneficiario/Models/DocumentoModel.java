@@ -26,12 +26,13 @@ public class DocumentoModel implements Serializable {
     public DocumentoModel() {
     }
 
-    public DocumentoModel(UUID documentoId, String tipoDocumento, String descricao, Date dataInclusao, Date dataAtualizacao) {
+    public DocumentoModel(UUID documentoId, String tipoDocumento, String descricao, Date dataInclusao, Date dataAtualizacao, BeneficiarioModel beneficiarioModel) {
         this.documentoId = documentoId;
         this.tipoDocumento = tipoDocumento;
         this.descricao = descricao;
         this.dataInclusao = dataInclusao;
         this.dataAtualizacao = dataAtualizacao;
+        this.beneficiarioModel = beneficiarioModel;
     }
 
     public UUID getDocumentoId() {
@@ -72,5 +73,11 @@ public class DocumentoModel implements Serializable {
 
     public void setDataAtualizacao(Date dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
+    }
+    public BeneficiarioModel getbeneficiariomodel(){
+        return  beneficiarioModel;
+    }
+    public void setbeneficiariomodel(BeneficiarioModel beneficiarioModel){
+        this.beneficiarioModel = beneficiarioModel;
     }
 }

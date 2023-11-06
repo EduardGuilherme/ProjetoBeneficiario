@@ -19,7 +19,7 @@ public class BeneficiarioModel implements Serializable {
     private Date dataNascimento;
     private  Date dataInclusao;
     private Date dataAtualizacao;
-    
+
     public BeneficiarioModel() {
     }
 
