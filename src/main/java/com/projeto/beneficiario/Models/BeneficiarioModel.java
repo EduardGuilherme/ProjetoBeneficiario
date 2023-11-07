@@ -3,6 +3,7 @@ package com.projeto.beneficiario.Models;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -21,16 +22,20 @@ public class BeneficiarioModel implements Serializable {
     private  Date dataInclusao;
     private Date dataAtualizacao;
 
+    @OneToMany(mappedBy = "beneficiarioModel", cascade = CascadeType.ALL)
+    private List<DocumentoModel> documentos;
+
     public BeneficiarioModel() {
     }
 
-    public BeneficiarioModel(UUID beneficiarioId, String nome, String telefone, Date dataNascimento, Date dataInclusao, Date dataAtualizacao) {
+    public BeneficiarioModel(UUID beneficiarioId, String nome, String telefone, Date dataNascimento, Date dataInclusao, Date dataAtualizacao, List<DocumentoModel> documentos) {
         this.beneficiarioId = beneficiarioId;
         this.nome = nome;
         this.telefone = telefone;
         this.dataNascimento = dataNascimento;
         this.dataInclusao = dataInclusao;
         this.dataAtualizacao = dataAtualizacao;
+        this.documentos = documentos;
     }
 
     public UUID getBeneficiarioId() {
@@ -79,5 +84,13 @@ public class BeneficiarioModel implements Serializable {
 
     public void setDataAtualizacao(Date dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
+    }
+
+    public List<DocumentoModel> getDocumentos() {
+        return documentos;
+    }
+
+    public void setDocumentos(List<DocumentoModel> documentos) {
+        this.documentos = documentos;
     }
 }
