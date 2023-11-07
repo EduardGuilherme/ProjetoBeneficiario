@@ -3,12 +3,13 @@ package com.projeto.beneficiario.DTO;
 import com.projeto.beneficiario.Models.BeneficiarioModel;
 import com.projeto.beneficiario.Models.DocumentoModel;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public record DocumentoDTO(String tipoDocumento,
                            String descricao,
-                           Date dataInclusao,
-                           Date dataAtualizacao,
+                           LocalDate dataInclusao,
+                           LocalDate dataAtualizacao,
                            BeneficiarioModel beneficiarioModel) {
 
     public DocumentoDTO(DocumentoModel documentoModel){
