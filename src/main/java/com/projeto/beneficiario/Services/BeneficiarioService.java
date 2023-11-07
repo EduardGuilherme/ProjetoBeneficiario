@@ -10,8 +10,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -61,7 +59,4 @@ public class BeneficiarioService {
     public List<DocumentoModel> findDocumentosandBeneficiario(UUID beneficiarioId) {
         return documentoRepository.findByBeneficiarioModel_BeneficiarioId(beneficiarioId);
     }
-    /*public Optional<BeneficiarioModel> findByBeneficiarioId(UUID id){
-        return beneficiarioRepository.findById(id);
-    }*/
 }
