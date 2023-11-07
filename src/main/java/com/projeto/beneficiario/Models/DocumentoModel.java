@@ -1,14 +1,12 @@
 package com.projeto.beneficiario.Models;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
-
+@Entity
+@Table(name = "documento")
 public class DocumentoModel implements Serializable {
     private static final long SerialVersionID = 1L;
 
