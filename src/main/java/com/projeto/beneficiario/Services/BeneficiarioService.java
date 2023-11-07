@@ -2,7 +2,9 @@ package com.projeto.beneficiario.Services;
 
 import com.projeto.beneficiario.DTO.BeneficiarioDTO;
 import com.projeto.beneficiario.Models.BeneficiarioModel;
+import com.projeto.beneficiario.Models.DocumentoModel;
 import com.projeto.beneficiario.Repository.BeneficiarioRepository;
+import com.projeto.beneficiario.Repository.DocumentoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,21 +12,30 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
 public class BeneficiarioService {
     final BeneficiarioRepository beneficiarioRepository;
+    final DocumentoRepository documentoRepository;
 
-    public BeneficiarioService(BeneficiarioRepository beneficiarioRepository) {
+    public BeneficiarioService(BeneficiarioRepository beneficiarioRepository, DocumentoRepository documentoRepository) {
         this.beneficiarioRepository = beneficiarioRepository;
+        this.documentoRepository = documentoRepository;
     }
 
     @Transactional
-    public BeneficiarioModel saveBeneficiario(BeneficiarioModel beneficiarioModel){
+    public BeneficiarioModel saveBeneficiarioDocumento(BeneficiarioModel beneficiarioModel, List<DocumentoModel> documentos){
         beneficiarioModel.setDataInclusao(new Date());
-        return beneficiarioRepository.save(beneficiarioModel);
+        beneficiarioModel.setDocumentos(documentos);
+        BeneficiarioModel saveBeneficiario = beneficiarioRepository.save(beneficiarioModel);
+
+        documentos.forEach(documento -> documento.setbeneficiariomodel(saveBeneficiario));
+        documentoRepository.saveAll(documentos);
+
+        return saveBeneficiario;
     }
 
     public BeneficiarioModel updateBeneficiario(UUID id, BeneficiarioDTO beneficiarioDTO){

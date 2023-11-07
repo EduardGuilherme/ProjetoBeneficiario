@@ -19,7 +19,9 @@ public class BeneficiarioModel implements Serializable {
     private String telefone;
     private Date dataNascimento;
 
+    @Temporal(TemporalType.TIMESTAMP)
     private  Date dataInclusao;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataAtualizacao;
 
     @OneToMany(mappedBy = "beneficiarioModel", cascade = CascadeType.ALL)
@@ -28,16 +30,22 @@ public class BeneficiarioModel implements Serializable {
     public BeneficiarioModel() {
     }
 
-    public BeneficiarioModel(UUID beneficiarioId, String nome, String telefone, Date dataNascimento, Date dataInclusao, Date dataAtualizacao, List<DocumentoModel> documentos) {
+    public BeneficiarioModel(UUID beneficiarioId, String nome, String telefone, Date dataNascimento, List<DocumentoModel> documentos) {
         this.beneficiarioId = beneficiarioId;
         this.nome = nome;
         this.telefone = telefone;
         this.dataNascimento = dataNascimento;
-        this.dataInclusao = dataInclusao;
-        this.dataAtualizacao = dataAtualizacao;
         this.documentos = documentos;
     }
+    @PrePersist
+    protected void onCreate() {
+        dataInclusao = new Date();
+    }
 
+    @PreUpdate
+    protected void onUpdate() {
+        dataAtualizacao = new Date();
+    }
     public UUID getBeneficiarioId() {
         return beneficiarioId;
     }
@@ -70,7 +78,7 @@ public class BeneficiarioModel implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
-    public Date getDataInclusao() {
+   public Date getDataInclusao() {
         return dataInclusao;
     }
 
