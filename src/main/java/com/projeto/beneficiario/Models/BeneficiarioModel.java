@@ -17,6 +17,7 @@ public class BeneficiarioModel implements Serializable {
     private String nome;
     private String telefone;
     private Date dataNascimento;
+
     private  Date dataInclusao;
     private Date dataAtualizacao;
 
