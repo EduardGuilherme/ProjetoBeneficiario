@@ -15,7 +15,9 @@ public class DocumentoModel implements Serializable {
     private UUID documentoId;
     private String tipoDocumento;
     private String descricao;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataInclusao;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataAtualizacao;
 
     @ManyToOne
@@ -24,15 +26,21 @@ public class DocumentoModel implements Serializable {
     public DocumentoModel() {
     }
 
-    public DocumentoModel(UUID documentoId, String tipoDocumento, String descricao, Date dataInclusao, Date dataAtualizacao, BeneficiarioModel beneficiarioModel) {
+    public DocumentoModel(UUID documentoId, String tipoDocumento, String descricao, BeneficiarioModel beneficiarioModel) {
         this.documentoId = documentoId;
         this.tipoDocumento = tipoDocumento;
         this.descricao = descricao;
-        this.dataInclusao = dataInclusao;
-        this.dataAtualizacao = dataAtualizacao;
         this.beneficiarioModel = beneficiarioModel;
     }
+    @PrePersist
+    protected void onCreate() {
+        dataInclusao = new Date();
+    }
 
+    @PreUpdate
+    protected void onUpdate() {
+        dataAtualizacao = new Date();
+    }
     public UUID getDocumentoId() {
         return documentoId;
     }
