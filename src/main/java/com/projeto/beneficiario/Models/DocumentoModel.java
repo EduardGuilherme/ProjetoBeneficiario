@@ -3,6 +3,7 @@ package com.projeto.beneficiario.Models;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 @Entity
@@ -16,9 +17,9 @@ public class DocumentoModel implements Serializable {
     private String tipoDocumento;
     private String descricao;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dataInclusao;
+    private LocalDate dataInclusao;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dataAtualizacao;
+    private LocalDate dataAtualizacao;
 
     @ManyToOne
     private BeneficiarioModel beneficiarioModel;
@@ -34,12 +35,12 @@ public class DocumentoModel implements Serializable {
     }
     @PrePersist
     protected void onCreate() {
-        dataInclusao = new Date();
+        dataInclusao = LocalDate.now();
     }
 
     @PreUpdate
     protected void onUpdate() {
-        dataAtualizacao = new Date();
+        dataAtualizacao = LocalDate.now();
     }
     public UUID getDocumentoId() {
         return documentoId;
@@ -65,19 +66,19 @@ public class DocumentoModel implements Serializable {
         this.descricao = descricao;
     }
 
-    public Date getDataInclusao() {
+    public LocalDate getDataInclusao() {
         return dataInclusao;
     }
 
-    public void setDataInclusao(Date dataInclusao) {
+    public void setDataInclusao(LocalDate dataInclusao) {
         this.dataInclusao = dataInclusao;
     }
 
-    public Date getDataAtualizacao() {
+    public LocalDate getDataAtualizacao() {
         return dataAtualizacao;
     }
 
-    public void setDataAtualizacao(Date dataAtualizacao) {
+    public void setDataAtualizacao(LocalDate dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
     }
     public BeneficiarioModel getbeneficiariomodel(){

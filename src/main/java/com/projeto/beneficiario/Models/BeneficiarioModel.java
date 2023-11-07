@@ -2,6 +2,8 @@ package com.projeto.beneficiario.Models;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -17,12 +19,12 @@ public class BeneficiarioModel implements Serializable {
     private UUID beneficiarioId;
     private String nome;
     private String telefone;
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private  Date dataInclusao;
+    private LocalDate dataInclusao;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dataAtualizacao;
+    private LocalDate dataAtualizacao;
 
     @OneToMany(mappedBy = "beneficiarioModel", cascade = CascadeType.ALL)
     private List<DocumentoModel> documentos;
@@ -30,7 +32,7 @@ public class BeneficiarioModel implements Serializable {
     public BeneficiarioModel() {
     }
 
-    public BeneficiarioModel(UUID beneficiarioId, String nome, String telefone, Date dataNascimento, List<DocumentoModel> documentos) {
+    public BeneficiarioModel(UUID beneficiarioId, String nome, String telefone, LocalDate dataNascimento, List<DocumentoModel> documentos) {
         this.beneficiarioId = beneficiarioId;
         this.nome = nome;
         this.telefone = telefone;
@@ -39,12 +41,12 @@ public class BeneficiarioModel implements Serializable {
     }
     @PrePersist
     protected void onCreate() {
-        dataInclusao = new Date();
+        dataInclusao = LocalDate.now();
     }
 
     @PreUpdate
     protected void onUpdate() {
-        dataAtualizacao = new Date();
+        dataAtualizacao = LocalDate.now();
     }
     public UUID getBeneficiarioId() {
         return beneficiarioId;
@@ -70,27 +72,27 @@ public class BeneficiarioModel implements Serializable {
         this.telefone = telefone;
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-   public Date getDataInclusao() {
+   public LocalDate getDataInclusao() {
         return dataInclusao;
     }
 
-    public void setDataInclusao(Date dataInclusao) {
+    public void setDataInclusao(LocalDate dataInclusao) {
         this.dataInclusao = dataInclusao;
     }
 
-    public Date getDataAtualizacao() {
+    public LocalDate getDataAtualizacao() {
         return dataAtualizacao;
     }
 
-    public void setDataAtualizacao(Date dataAtualizacao) {
+    public void setDataAtualizacao(LocalDate dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
     }
 
