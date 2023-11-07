@@ -13,7 +13,7 @@ public class BeneficiarioModel implements Serializable {
     private static final long SerialVersion = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID beneficiarioId;
     private String nome;
     private String telefone;
