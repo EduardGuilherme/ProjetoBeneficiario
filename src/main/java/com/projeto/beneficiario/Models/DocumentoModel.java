@@ -11,7 +11,7 @@ public class DocumentoModel implements Serializable {
     private static final long SerialVersionID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID documentoId;
     private String tipoDocumento;
     private String descricao;
