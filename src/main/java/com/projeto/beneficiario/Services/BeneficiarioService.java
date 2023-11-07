@@ -28,7 +28,6 @@ public class BeneficiarioService {
 
     @Transactional
     public BeneficiarioModel saveBeneficiarioDocumento(BeneficiarioModel beneficiarioModel, List<DocumentoModel> documentos){
-        beneficiarioModel.setDataInclusao(new Date());
         beneficiarioModel.setDocumentos(documentos);
         BeneficiarioModel saveBeneficiario = beneficiarioRepository.save(beneficiarioModel);
 
@@ -45,7 +44,6 @@ public class BeneficiarioService {
             existbeneficiario.setNome(beneficiarioDTO.nome());
             existbeneficiario.setDataNascimento(beneficiarioDTO.dataNascimento());
             existbeneficiario.setTelefone(beneficiarioDTO.telefone());
-            existbeneficiario.setDataAtualizacao(new Date());
 
             return beneficiarioRepository.save(existbeneficiario);
         }else{
@@ -53,15 +51,17 @@ public class BeneficiarioService {
         }
     }
 
-    public void deleteBeneficiario(BeneficiarioModel beneficiarioModel){
-        beneficiarioRepository.delete(beneficiarioModel);
+    public void deleteBeneficiario(UUID id){
+        beneficiarioRepository.deleteById(id);
     }
 
     public Page<BeneficiarioModel> findAllBeneficiario(Pageable pageable){
         return beneficiarioRepository.findAll(pageable);
     }
-
-    public Optional<BeneficiarioModel> findByBeneficiarioId(UUID id){
-        return beneficiarioRepository.findById(id);
+    public List<DocumentoModel> findDocumentosandBeneficiario(UUID beneficiarioId) {
+        return documentoRepository.findByBeneficiarioModel_BeneficiarioId(beneficiarioId);
     }
+    /*public Optional<BeneficiarioModel> findByBeneficiarioId(UUID id){
+        return beneficiarioRepository.findById(id);
+    }*/
 }
