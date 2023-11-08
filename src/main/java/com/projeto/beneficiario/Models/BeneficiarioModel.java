@@ -1,10 +1,9 @@
 package com.projeto.beneficiario.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,13 +19,11 @@ public class BeneficiarioModel implements Serializable {
     private String nome;
     private String telefone;
     private LocalDate dataNascimento;
-
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDate dataInclusao;
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDate dataAtualizacao;
 
     @OneToMany(mappedBy = "beneficiarioModel", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<DocumentoModel> documentos;
 
     public BeneficiarioModel() {
