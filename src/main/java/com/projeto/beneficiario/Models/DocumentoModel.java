@@ -1,10 +1,9 @@
 package com.projeto.beneficiario.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.UUID;
 @Entity
 @Table(name = "documento")
@@ -16,12 +15,12 @@ public class DocumentoModel implements Serializable {
     private UUID documentoId;
     private String tipoDocumento;
     private String descricao;
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDate dataInclusao;
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDate dataAtualizacao;
 
     @ManyToOne
+    @JoinColumn(name = "beneficiario_id")
+    @JsonIgnore
     private BeneficiarioModel beneficiarioModel;
 
     public DocumentoModel() {
