@@ -26,15 +26,13 @@ public class BeneficiarioController {
 
     @PostMapping
     public ResponseEntity<String> createBeneficiario(@RequestBody BeneficiarioDTO beneficiarioDTO){
-        //BeneficiarioModel createdBeneficiario =
-                beneficiarioService.saveBeneficiarioDocumento(beneficiarioDTO);
+        beneficiarioService.saveBeneficiarioDocumento(beneficiarioDTO);
         return new ResponseEntity<>("Beneficiario e Documentos Criados com sucesso", HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<String> updateBeneficiario(@PathVariable UUID id, @RequestBody BeneficiarioDTO beneficiarioDTO){
-        //BeneficiarioModel beneficiarioUpdate =
-                beneficiarioService.updateBeneficiario(id, beneficiarioDTO);
+        beneficiarioService.updateBeneficiario(id, beneficiarioDTO);
         return new ResponseEntity<>("Beneficiario foi atualizado!",HttpStatus.OK);
     }
     @DeleteMapping("/{id}")
