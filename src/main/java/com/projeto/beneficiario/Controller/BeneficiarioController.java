@@ -13,38 +13,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+
 @RestController
 @RequestMapping("/beneficiario")
 public class BeneficiarioController {
     private final BeneficiarioService beneficiarioService;
+
 
     public BeneficiarioController(BeneficiarioService beneficiarioService) {
         this.beneficiarioService = beneficiarioService;
     }
 
     @PostMapping
-    public ResponseEntity<BeneficiarioModel> createBeneficiario(@RequestBody BeneficiarioDTO beneficiarioDTO){
-        BeneficiarioModel beneficiarioModel = new BeneficiarioModel();
-        beneficiarioModel.setNome(beneficiarioDTO.nome());
-        beneficiarioModel.setTelefone(beneficiarioDTO.telefone());
-        beneficiarioModel.setDataNascimento(beneficiarioDTO.dataNascimento());
-
-        List<DocumentoModel> documentos = beneficiarioDTO.documentos();
-
-        BeneficiarioModel savedBeneficiario = beneficiarioService.saveBeneficiarioDocumento(beneficiarioModel, documentos);
-
-        return new ResponseEntity<>(savedBeneficiario, HttpStatus.CREATED);
+    public ResponseEntity<String> createBeneficiario(@RequestBody BeneficiarioDTO beneficiarioDTO){
+        //BeneficiarioModel createdBeneficiario =
+                beneficiarioService.saveBeneficiarioDocumento(beneficiarioDTO);
+        return new ResponseEntity<>("Beneficiario e Documentos Criados com sucesso", HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<BeneficiarioModel> updateBeneficiario(@PathVariable UUID id, @RequestBody BeneficiarioDTO beneficiarioDTO){
-        BeneficiarioModel beneficiarioUpdate = beneficiarioService.updateBeneficiario(id, beneficiarioDTO);
-        return new ResponseEntity<>(beneficiarioUpdate,HttpStatus.OK);
+    public ResponseEntity<String> updateBeneficiario(@PathVariable UUID id, @RequestBody BeneficiarioDTO beneficiarioDTO){
+        //BeneficiarioModel beneficiarioUpdate =
+                beneficiarioService.updateBeneficiario(id, beneficiarioDTO);
+        return new ResponseEntity<>("Beneficiario foi atualizado!",HttpStatus.OK);
     }
-    @DeleteMapping
-    public ResponseEntity<Void> beneficiarioDelete(@PathVariable UUID id){
-        beneficiarioService.deleteBeneficiario(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> beneficiarioDelete(@PathVariable UUID id){
+            beneficiarioService.deleteBeneficiario(id);
+            return new ResponseEntity<>("Beneficiario e documento foram deletados",HttpStatus.OK);
+
     }
     @GetMapping
     public ResponseEntity<Page<BeneficiarioModel>> listBeneficiario(Pageable pageable){
