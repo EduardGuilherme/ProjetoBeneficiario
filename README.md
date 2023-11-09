@@ -23,6 +23,7 @@ Esta é uma API RESTful desenvolvida em Spring Boot para gerenciar beneficiário
 2. Navegue até o diretório do projeto: `cd ProjetoBeneficiario`
 3. Configure as informações do banco de dados em `src/main/resources/application.properties` (por exemplo, altere o URL, usuário e senha do PostgreSQL).
 4. Execute o projeto com Maven: `mvn spring-boot:run`
+5. Para criar uma Build do projeto utilize o comando `mvnw install`
 
 ## Uso da API
 Você pode usar ferramentas como o cURL, Postman ou Insomnia para interagir com a API. Aqui está um exemplo de como criar um novo beneficiário com documentos usando cURL:
