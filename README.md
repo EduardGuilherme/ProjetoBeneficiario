@@ -27,9 +27,22 @@ Esta é uma API RESTful desenvolvida em Spring Boot para gerenciar beneficiário
 
 ## Uso da API
 Você pode usar ferramentas como o cURL, Postman ou Insomnia para interagir com a API. Aqui está um exemplo de como criar um novo beneficiário com documentos usando cURL:
-
 ```bash
-curl -X POST "http://localhost:8080/beneficiario" -H "Content-Type: application/json" -d '{
+curl -X POST "http://localhost:8080/auth/register" "Content-Type:application/json" -d{
+    "login":"String",
+    "password":"String",
+    "role":"String"
+}
+
+
+curl -X POST "http://localhost:8080/auth/login" "Content-Type:application/json" -d{
+    "login":"String",
+    "password":"String"
+}
+ response: token:"String"
+ 
+
+curl -X POST "http://localhost:8080/beneficiario" -H "Content-Type: application/json" -d 'Authorization Bearer <Token>{
     "nome": "String",
     "telefone": "String",
     "dataNascimento": "yyyy-mm-dd",
